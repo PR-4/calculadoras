@@ -1,0 +1,56 @@
+FOLHELHO                   FLH        #40ff00         57    
+ARENITO                    ARN        #ffff40         49  
+MARGA                      MRG        #2f0eff         58     
+DIAMICTITO                 DMC        #10ef60         44
+CONGLOMERADO               CGL        #ffbf20         42
+CALCITIC_SANDSTONE         CDSD       #0080ef         8 
+CALCITIC_MUDSTONE          CMDS       #50ffff         6
+MUDSTONE	            MDS	#7faeae	12
+PACKSTONE	            PKS	#18b1f1	14
+QUARTZITO	            QZT	#ff3f3f	74
+RIOLITO	            RLT	#e98918	68
+SAL_NI  	            SNI	#8e1ddd	84
+SIDERITA	            SID	#e98918	9
+SILEXITO	            SLX	#beffff	94
+SILTITO	            SLT	#af1d4e	54
+SILVINITA	            SLV	#cda0dd	86
+TALCOESTIVENCITA	    TES	#ffff3f	91
+TAQUIDRITA	            TQD	#6d1ddd	81
+TILITO	                    TIL	#2fec5d	46
+TOBA	                    TOB	#dddddd	59
+TOBA_ARENOSA	            TON	#ffff3f	43
+TOBA_ARGILOSA	            TOL	#7eff00	45
+TOBA_SILTICA	            TOS	#af1d4e	47
+TUFO_VULCANICO	            TUF	#ff5dbe	61
+ULTRABASICA	            ULB	#00a000	78
+VULCANICA_NI	            VNI	#ffbe1d	34
+WACKESTONE	            WKS	#33d8f9	13
+XISTO    	            XST	#ff5d5d	73
+IGNEA_NI	            INI	#ff0000	64	
+DIABASIO	            DIA	#ff00ff	65	
+BASALTO	            BAS	#ff00ff	66	
+GRANITO	            GRN	#ff0000	67	
+RIOLITO	            RLT	#e98918	68	
+METAMORFICA_NI		    MNI	#ff0000	70	
+GNAISSE	            GNA 	#ff0000	71	
+FILITO	                   FLT	        #3fa000	72	
+XISTO	                   XST	        #ff5d5d	73	
+QUARTZITO	           QZT	        #ff3f3f	74	1000
+META-ARENITO	           MAR	        #ff3f3f	75	1000
+METASSILTITO	           MSI	        #dd3f3f	76	
+ARDOSIA	           ARS	        #00dd00	77	1000
+ULTRABASICA	           ULB	        #00a000	78	
+METASSEDIMENTO	           MSD	        #ff0000	79	
+TAQUIDRITA	           TQD	        #6d1ddd	81	
+ANIDRITA	           AND	        #dd1dff	82	1031
+GIPSITA	           GIP	        #dd1dff	83	
+SAL_NI          	   SNI	        #8e1ddd	84	1038
+HALITA	                   HAL	        #6dafcd	85	1038
+SILVINITA	           SLV	        #cda0dd	86	1038
+CARNALITA	           CRN	        #af5ddd	87	1038
+LINHITO	           LNT	        #dddddd	90	
+TALCOESTIVENCITA	   TES	        #ffff3f	91	
+CARVAO	                  CRV	        #dddddd	92	
+SILEXITO	          SLX	        #beffff	94	1037
+FANGOLITA	          FNG	        #dddddd	95	
+
