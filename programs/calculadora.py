@@ -41,51 +41,63 @@ def DensidadeAparenteSeca(RHOB,NPHI):
 
 
 
-
-#----------------------------------------------------------------------#
-# Leitura do data frame que contém os canais da perfilagem             #
-#----------------------------------------------------------------------#
-#df = pd.read_csv("../inputs/1ses-0173--se-.las", sep='\s+', skiprows=38, 
-#                 names=('depth(m)','cota','tvd','lat','long',
-#                        'brgr.gapi','brneut.%','brdens.g/cm3','brdtp.us/ft','brcali.in'))
-df = pd.read_csv(input('Endereço/nome do arquivo LAS:'), sep='\s+', skiprows=int(input('Número de linhas do cabeçalho:')), 
-                 names=('Depth(m)','cota','TVD','lat','long',
-                        'BRGR.gAPI','BRNEUT.%','BRDENS.g/cm3','BRDTP.us/ft','BRCALI.in'))
-
 #análise do LAS
-las = lasio.read("../inputs/1SES-0173--SE-.las")
-las.sections.keys()
-las.sections['Version']
-for item in las.sections['Well']:
-    print(f"{item.descr} ({item.mnemonic}): \t\t {item.value}")
-    
-    
-las.sections['Well']['WELL'] = 'Brasil'
+las = lasio.read(input("Nome do arquivo LAS:"))
 
-for count, curve in enumerate(las.curves):
-    print(f"Curve: {curve.mnemonic}, \t Units: {curve.unit}, \t Description: {curve.descr}")
-print(f"There are a total of: {count+1} curves present within this file")
+#transforma lasio em um pandas dataframe e reseta os índices
+well = las.df().reset_index()
 
 
-#Filtra os Nan:
-df=df[(df['BRGR.gAPI'] != -99999.0)]
-df=df[(df['BRNEUT.%'] != -99999.0)]
-df=df[(df['BRDENS.g/cm3'] != -99999.0)]
+# ordenar em ordem decrescente as variáveis por seus valores ausentes
+#print('Valores nulos (%):')
+#print((well.isnull().sum()/well.shape[0]).sort_values(ascending=False)*100)
+
+# retira os Nans
+#Nan = input('Você deseja retirar todos os valores nulos do seu poço?(sim ou não)->')
+#if Nan == 'sim':
+#    well = well.dropna(how='any')
+#    print(well.head())
+#else:
+#        well = well
+
+#Seleção de alvos desejados:
+alvo=input('Você deseja selecionar algum alvo específico?(sim ou não)->')
+if alvo =='sim':
+    topo=float(input('Profundidade de topo(m)='))
+    base=float(input('Profundidade de base(m)='))
+    well = well[(well['DEPT']>=topo) & (well['DEPT']<=base)]
+else:
+    well = well
+
+
+# plotar o histograma das variáveis numéricas
+#well.hist(bins=50, figsize=(16,9));
+#plt.show()
 
 #Vetoriza as variáveis
-prof=np.array(df['Depth(m)'])
-tvd=np.array(df['TVD'])
-GR=np.array(df['BRGR.gAPI'])
-NPHI=np.array(df['BRNEUT.%'])
-RHOB=np.array(df['BRDENS.g/cm3'])
+prof=np.array(well['DEPT'])
+tvd=np.array(well['TVD'])
+GR=np.array(well['BRGR'])
+NPHI=np.array(well['BRNEUT'])
+RHOB=np.array(well['BRDENS'])
 
 #Calcula o índice de GR
 IGR = igr(GR)
 
+#Calcula o Sand Fraciton:
+SF = SandFraction(clavier(IGR))
+
+#Calcula Densidade aparente seca:
+DD = DensidadeAparenteSeca(RHOB,NPHI)
+
+
 #Calcula e Salva em txt
-fracao_areia = pd.DataFrame({'TVD':prof,'Sand Fraction':SandFraction(clavier(IGR))})
-fracao_areia.to_csv('../outputs/fracao_areia.txt', sep=' ', index=False)
+fracao_areia = pd.DataFrame({'Profundidade [m]':prof,'Fração Areia [%]':SF})
+fracao_areia.to_csv('fracao_areia.txt', sep='\t', index=False)
 
 
-DAS = pd.DataFrame({'TVD':prof,'Dry density':DensidadeAparenteSeca(RHOB,NPHI)})
-DAS.to_csv('../outputs/densidade_aparente_seca.txt', sep=' ', index=False) 
+DAS = pd.DataFrame({'Profundidade [m]':prof,'Densidade Aparente Seca [g/cm³]':DD})
+DAS.to_csv('densidade_aparente_seca.txt', sep='\t', index=False) 
+
+#Fim
+print('Arquivos de entrada do Achiles prontos!')
