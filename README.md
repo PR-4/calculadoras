@@ -8,7 +8,7 @@ As chamadas calculadoras tratam o dado LAS para servirem de entrada de dados par
 * Arquivo .las na mesma pasta do executável
 
 ### Como instalar a biblioteca lasio
-A biblioteca lasio é uma dependência deste programa. Ela é responsável pelo pré-tratamento dos arquivos de poços em formato .las
+A biblioteca lasio é uma dependência deste programa e não é uma biblioteca padrão do interna do Anaconda. Ela é responsável pelo pré-tratamento dos arquivos de poços em formato .las
 
 Abra o powershell dentro do anaconda e digite o seguinte comando no seu terminal para a instalação via conda
 
