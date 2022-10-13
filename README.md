@@ -12,15 +12,15 @@ A biblioteca lasio é uma dependência deste programa. Ela é responsável pelo 
 
 Abra o powershell dentro do anaconda e digite o seguinte comando no seu terminal para a instalação via conda
 
-'''
-conda install lasio
-'''
+
+> conda install lasio
+
 
 ou 
 
-'''
-pip install lasio
-'''
+
+> pip install lasio
+
 
 para instalação via pip. 
 
@@ -28,9 +28,9 @@ para instalação via pip.
 * navegar até a pasta aonde se localiza o calculadoras.py
 * digitar no prompt de comando do anaconda
 
-'''
-python calculadoras.py 
-'''
+
+> python calculadora.py 
+
 
 * Durante a execução digite as informações no nome do poço e horizonte alvo, caso haja
 
