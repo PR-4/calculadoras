@@ -1,6 +1,6 @@
 #---------------------------------#
-#          Calculadora.py         #
-#  Autor: Victor Carreira         #
+#   Calculadora da DAS e da FA    #
+#     Autor: Victor Carreira      #
 # Objetivo: retorna dois arquivos # 
 #de saída a partir de um LAS.     #
 #Densidade aparente seca e fração #
@@ -16,7 +16,7 @@ import lasio
 import numpy as np
 import pandas as pd
 
-#Funções implementadas:
+#Funções implementadas e testadas:
 
 def igr(GR):
     GRmin=min(GR)
@@ -40,25 +40,29 @@ def DensidadeAparenteSeca(RHOB,NPHI):
     return DAS
 
 
+#Diretórios:
+entrada = '..'+'/'+'inputs'+'/'
+saida = '..'+'/'+'outputs'+'/'
 
-#análise do LAS
-las = lasio.read(input("Nome do arquivo LAS:"))
+
+#entra o LAS
+las = lasio.read(entrada+input("Nome do arquivo de entrada (*.las):"))
 
 #transforma lasio em um pandas dataframe e reseta os índices
 well = las.df().reset_index()
 
 
 # ordenar em ordem decrescente as variáveis por seus valores ausentes
-#print('Valores nulos (%):')
-#print((well.isnull().sum()/well.shape[0]).sort_values(ascending=False)*100)
+print('Valores nulos (%):')
+print((well.isnull().sum()/well.shape[0]).sort_values(ascending=False)*100)
 
 # retira os Nans
-#Nan = input('Você deseja retirar todos os valores nulos do seu poço?(sim ou não)->')
-#if Nan == 'sim':
-#    well = well.dropna(how='any')
-#    print(well.head())
-#else:
-#        well = well
+Nan = input('Você deseja retirar todos os valores nulos do seu poço?(sim ou não)->')
+if Nan == 'sim':
+    well = well.dropna(how='any')
+    print(well.head())
+else:
+        well = well
 
 #Seleção de alvos desejados:
 alvo=input('Você deseja selecionar algum alvo específico?(sim ou não)->')
@@ -70,13 +74,8 @@ else:
     well = well
 
 
-# plotar o histograma das variáveis numéricas
-#well.hist(bins=50, figsize=(16,9));
-#plt.show()
-
 #Vetoriza as variáveis
 prof=np.array(well['DEPT'])
-tvd=np.array(well['TVD'])
 GR=np.array(well['BRGR'])
 NPHI=np.array(well['BRNEUT'])
 RHOB=np.array(well['BRDENS'])
@@ -85,19 +84,19 @@ RHOB=np.array(well['BRDENS'])
 IGR = igr(GR)
 
 #Calcula o Sand Fraciton:
-SF = SandFraction(clavier(IGR))
+FA = SandFraction(clavier(IGR))
 
 #Calcula Densidade aparente seca:
-DD = DensidadeAparenteSeca(RHOB,NPHI)
+DAS = DensidadeAparenteSeca(RHOB,NPHI)
 
 
 #Calcula e Salva em txt
-fracao_areia = pd.DataFrame({'Profundidade [m]':prof,'Fração Areia [%]':SF})
-fracao_areia.to_csv('fracao_areia.txt', sep='\t', index=False)
+fracao_areia = pd.DataFrame({'Profundidade [m]':prof,'Fração Areia [%]':FA})
+fracao_areia.to_csv(saida+input("Nome do arquivo de saída da fração areia (*csv,*txt):"), sep='\t', index=False)
 
 
-DAS = pd.DataFrame({'Profundidade [m]':prof,'Densidade Aparente Seca [g/cm³]':DD})
-DAS.to_csv('densidade_aparente_seca.txt', sep='\t', index=False) 
+DAS = pd.DataFrame({'Profundidade [m]':prof,'Densidade Aparente Seca [g/cm³]':DAS})
+DAS.to_csv(saida+input("Nome do arquivo de saída da densidade aparente seca (*csv,*txt):"), sep='\t', index=False) 
 
 #Fim
-print('Arquivos de entrada do Achiles prontos!')
+print('Arquivos de Densidade Aparente Seca e Fração Areia prontos!')
