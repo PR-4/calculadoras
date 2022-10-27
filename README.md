@@ -1,5 +1,5 @@
 # Calculadoras Pr4
-Repositório com as calculadoras que serão inseridas no AchillesBR. 
+Repositório com as calculadoras em desenvolvimento. 
 Os arquivos contidos na pasta programs tratam o dado LAS para servirem de entrada para o AchillesBR.
 Até o presente momento existem 2 calculadoras que produzem 3 saídas (entradas do achillesBR) a saber: o
 *dasfa.py*, que calcula a densidade aparente seca e a fração areia, e o *pynpefa.py* que retorna a análise
