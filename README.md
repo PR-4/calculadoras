@@ -35,7 +35,7 @@ ou
 para instalação via pip. 
 
 ### Como instalar a biblioteca spectrum
-A biblioteca spectrum implementa a análise espectral de uma função de onda e também é uma dependência da análise NPEFA.
+A biblioteca spectrum implementa a análise espectral de uma função de onda e também é uma dependência da análise INPEFA.
 
 Abra o powershell dentro do anaconda (windows) ou o terminal (linux) e digite o seguinte comando no seu terminal para a instalação via conda
 
@@ -89,4 +89,4 @@ para instalação via pip.
 > python pynpefa.py 
 * Durante a execução digite as informações do nome do poço de teste
 * Decida digitando com um sim ou não se deseja selecionar um horizonte específico.
-* Digite o nome do arquivo de saída da análise NPEFA.
+* Digite o nome do arquivo de saída da análise INPEFA.
