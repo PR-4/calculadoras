@@ -3,7 +3,7 @@ Repositório com as calculadoras em desenvolvimento.
 Os arquivos contidos na pasta programs tratam o dado LAS para servirem de entrada para o AchillesBR.
 Até o presente momento existem 3 calculadoras que produzem 3 saídas (entradas do achillesBR) a saber: o
 *dasfa.py*, que calcula a densidade aparente seca e a fração areia, o *pynpefa.py* que retorna a análise
-de ciclicidade baseada em [daely](https://github.com/daeIy/PyNPEFA), e o *srate_method1.py* que implementa uma
+de ciclicidade baseada em [daely](https://github.com/daeIy/PyNPEFA) e foi incorporado ao srate_method1.py, e o *srate_method1.py* que implementa uma
 das metodologias discutidas para o cálculo da taxa de sedimentação. Este último já incorpora o termo resultante 
 da análise INPEFA mais apropriado para o cálculo da taxa de sedimentação via ciclos de 408k anos.
 
@@ -57,16 +57,6 @@ flowchart TD
 * Digite o nome do arquivo de saída da densidade aparente seca
 * Digite o nome do arquivo de saída da fração areia.
  
-## Como Executar o programa pynpefa.py
-* Abra o terminal (Linux) ou o powershell do anaconda (windows)
-* Clone o repositório calculadoras ou faça o download se preferir
-* Entre na pasta programs
-* Digite o comando a seguir 
-> python pynpefa.py 
-* Durante a execução digite as informações do nome do poço de teste
-* Decida digitando com um sim ou não se deseja selecionar um horizonte específico.
-* Digite o nome do arquivo de saída da análise INPEFA.
-
 ## Como Executar o programa srate_method1.py (experimental!)
 * Abra o terminal (Linux) ou o powershell do anaconda (windows)
 * Clone o repositório calculadoras ou faça o download se preferir
