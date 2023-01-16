@@ -1,9 +1,23 @@
 # Calculadoras Pr4
 Repositório com as calculadoras em desenvolvimento. 
 Os arquivos contidos na pasta programs tratam o dado LAS para servirem de entrada para o AchillesBR.
-Até o presente momento existem 2 calculadoras que produzem 3 saídas (entradas do achillesBR) a saber: o
-*dasfa.py*, que calcula a densidade aparente seca e a fração areia, e o *pynpefa.py* que retorna a análise
-de ciclicidade baseada em [daely](https://github.com/daeIy/PyNPEFA).   
+Até o presente momento existem 3 calculadoras que produzem 3 saídas (entradas do achillesBR) a saber: o
+*dasfa.py*, que calcula a densidade aparente seca e a fração areia, o *pynpefa.py* que retorna a análise
+de ciclicidade baseada em [daely](https://github.com/daeIy/PyNPEFA), e o *srate_method1.py* que implementa uma
+das metodologias discutidas para o cálculo da taxa de sedimentação. Este último já incorpora o termo resultante 
+da análise INPEFA mais apropriado para o cálculo da taxa de sedimentação via ciclos de 408k anos.
+
+## Conteúdo do repositório
+* programs: contém os programas principais
+* inputs: arquivos de entrada e teste
+* outputs: resultado do processamento
+* modules: modelagem INPEFA
+
+## Criação e migração para um novo ambiente de trabalho:
+
+> conda create -n calculadoras python=3 
+
+> conda activate calculadoras
 
 ## Dependências
 * [Anaconda](https://www.anaconda.com/) >= 3
@@ -11,63 +25,25 @@ de ciclicidade baseada em [daely](https://github.com/daeIy/PyNPEFA).
 * scipy >= 1.4.0
 * spectrum >= 0.7.3
 * lasio >= 0.24.0
-
-## Conteúdo do repositório
-* programs: contém os programas principais
-* inputs: arquivos de entrada e teste
-* outputs: resultado do processamento
-* modules: dependência pynpefa
-
-### Como instalar a biblioteca cvxopt
-A biblioteca cvxplot implementa a otimização numérica cônica utilizada na análise PyNPEFA.
-
-Abra o powershell dentro do anaconda (windows) ou o terminal (linux) e digite o seguinte comando no seu terminal para a instalação via conda
+* Cartopy = 0.21
+* Xarray
+* Dask
+* NetCDF4
+* Bottleneck
+* Climlab
 
 
-> conda install -c conda-forge cvxopt
+### Como instalar as dependências
 
-ou 
+Execute o shellcript com o seguinte comando abaixo:
 
+> ./bibliotecas.sh
 
-> pip install cvxopt
-
-
-para instalação via pip. 
-
-### Como instalar a biblioteca spectrum
-A biblioteca spectrum implementa a análise espectral de uma função de onda e também é uma dependência da análise INPEFA.
-
-Abra o powershell dentro do anaconda (windows) ou o terminal (linux) e digite o seguinte comando no seu terminal para a instalação via conda
-
-
-> conda config --append channels conda-forge
-> conda install spectrum
-
-ou 
-
-
-> pip install spectrum
-
-
-para instalação via pip. 
-
-
-### Como instalar a biblioteca lasio
-A biblioteca lasio é uma dependência deste programa e não é uma biblioteca padrão do interna do Anaconda. Ela é responsável pelo pré-tratamento dos arquivos de poços em formato .las
-
-Abra o powershell dentro do anaconda (windows) ou o terminal (linux) e digite o seguinte comando no seu terminal para a instalação via conda
-
-
-> conda install lasio
-
-
-ou 
-
-
-> pip install lasio
-
-
-para instalação via pip. 
+## Método experimental número 1:
+```mermaid
+flowchart TD
+    id1[(Data)] --> id2(PyNPEFA: shorter term selection) --> id3(Target selection) --> id4(Pyleoclim object transformation) --> id5(Interpolation?? + signification test using mtm method) --> id6(window selection) --> id7(Band filter, sigma = +/-2, or gaussian filter) --> id8(Orbital cycle association) --> id9(Graphical data analysis: sed. rates and ages)
+```
 
 ## Como Executar o programa dasfa.py
 * Abra o terminal (Linux) ou o powershell do anaconda (windows)
@@ -90,3 +66,13 @@ para instalação via pip.
 * Durante a execução digite as informações do nome do poço de teste
 * Decida digitando com um sim ou não se deseja selecionar um horizonte específico.
 * Digite o nome do arquivo de saída da análise INPEFA.
+
+## Como Executar o programa srate_method1.py (experimental!)
+* Abra o terminal (Linux) ou o powershell do anaconda (windows)
+* Clone o repositório calculadoras ou faça o download se preferir
+* Entre na pasta programs
+* Digite o comando a seguir 
+> python srate_method1.py 
+* Durante a execução digite as informações do nome do poço de teste
+* Decida digitando com um sim ou não se deseja selecionar um horizonte específico.
+* Aguarde até a finalização completa. 
